@@ -9,7 +9,7 @@ int main(){
 
     while(choice != 5){
         cout << "===============MAIN MENU===============" << endl;
-        cout << "Current high-priority patient: " << patients.get_front().patient_name << endl; //don't forget to complete this part
+        cout << "Patient With Highest Priority: " << patients.get_front().patient_name << endl; //don't forget to complete this part
         cout << "1. Update queue" << endl;
         cout << "2. View queue" << endl;
         cout << "3. Save current queue" << endl;
