@@ -36,7 +36,6 @@ class priorityQueue {
         void write_to_txt() const;
 
         // Loads new data from txt file
-        // Why This ?
         void load_from_txt(string& filename) const;
 };
 
