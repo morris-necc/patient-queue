@@ -2,5 +2,5 @@ Version 0.01:
 - Renamed priority_queue class to priorityQueue to fit naming conventions.
 - Fixed some typos.
 - Changed return type of the get_front method to myNode instead of voids.
-- Added a load_from_txt method to the priorityQueue class(Is This Really Necessary ?).
+- Added a load_from_txt method to the priorityQueue class.
 - Added a main menu.
