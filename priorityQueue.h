@@ -35,11 +35,7 @@ class priorityQueue {
         // Creates new .txt file for every time method is called.
         void write_to_txt() const;
 
-<<<<<<< HEAD
-        // Loads new data from txt file
-=======
         // Loads new data from txt file.
->>>>>>> 001693927cca1e6038147ac6b6adbf9c498be287
         void load_from_txt(string& filename) const;
 };
 

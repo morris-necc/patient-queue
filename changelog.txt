@@ -10,3 +10,7 @@ Version 0.02:
 - Last 3 methods are reserved :)
 - Filled get_front()
 - Menu now around 5/8 done
+
+Version 0.03:
+- Filled in 3 methods
+- "Finished" the menu (kinda needs cleaning)
