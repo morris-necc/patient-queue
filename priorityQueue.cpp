@@ -69,7 +69,7 @@ void priorityQueue::write_to_txt() const{
     //untested
     //same logic as above, but writing to file instead
     //every attribute of the node is separated by ';' without quotation marks
-    ofstream File("test.txt") //feel free to change the name later on
+    ofstream File("test.txt"); //feel free to change the name later on
     MyNode* ptr;
     ptr = front;
     if(ptr == nullptr){
