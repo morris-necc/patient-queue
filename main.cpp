@@ -9,6 +9,7 @@ int main(){
     priorityQueue patients;
 
     while(choice != 5){
+        cout << "\n";
         cout << "===============MAIN MENU===============" << endl;
         cout << "Patient With Highest Priority : " << patients.get_front().patient_name << endl;
         cout << "1. Update queue" << endl;
