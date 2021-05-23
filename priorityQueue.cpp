@@ -9,7 +9,10 @@ priorityQueue::priority_queue(){
 }
 
 priorityQueue::~priority_queue(){
-    
+    /*
+    Link All Available Pointer Variables To NULL / nullptr, 
+    Then Either Free / Delete Them If Necessary.
+    */
 }
 
 int priorityQueue::calculate_priority(){
