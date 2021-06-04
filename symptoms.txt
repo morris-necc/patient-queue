@@ -1,0 +1,11 @@
+cold, 5
+fever, 7
+coughing, 6
+nausea, 8
+internal bleeding, 20
+seizure, 60
+stroke, 70
+unresponsive, 60
+vomiting, 10
+pregnant, 50
+

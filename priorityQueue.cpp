@@ -1,5 +1,6 @@
 #include <iostream>
-#include fstream
+#include <fstream>
+#include <map>
 #include "priorityQueue.h"
 using namespace std;
 
@@ -9,11 +10,41 @@ priorityQueue::priority_queue(){
 }
 
 priorityQueue::~priority_queue(){
-    
+    MyNode* ptr, temp;
+    ptr = front;
+    while(ptr != nullptr){
+        temp = ptr->link; //eventually temp = rear->link = nullptr
+        delete ptr;
+        ptr = temp; //which ends the loop because ptr = nullptr
+    } //i think you can use this for the destructor method as well
 }
 
-int priorityQueue::calculate_priority(){
-    //???
+int priorityQueue::calculate_priority(list<string> symptoms_list){
+    //untested
+    ifstream symptomsDatabase("symptoms.txt"); //open list of implemented symptoms
+    map<string, int> symptomsPriority;
+    int priority = 0;
+
+    //puts every symptom and its corresponding priority into a map
+    string text;
+    while(getline(symptomsDatabase, text)){
+        int last = 0;
+        string[] arr = new string[2];
+        for(int i = 0; i < 2; i++){
+            arr[i] = text.substr(last, text.find(","));
+            last = last + arr[i].length();
+        }
+        symptomsPriority.insert(pair<string, int>(arr[0], stoi(arr[1]))); //stoi converts string to int
+    }
+
+    //calculate sum of priority based on the map
+    for(auto const& it : symptoms_list){
+        string symptom = *it;
+        auto x = symptomsPriority.find(symptom); //x = iterator for the element
+        priority = priority + x->second; //don't know if this works
+    }
+
+    return priority;
 }
 
 void priorityQueue::insert_patient_records(const int& priority, const string& id, const string& name, const list<string>& symptoms){
@@ -112,7 +143,7 @@ void priorityQueue::load_from_txt(string& filename) const{
         temp = ptr;
         //substrings into array
         int last = 0;
-        for(int i = 0; i<=4; i++){
+        for(int i = 0; i<4; i++){
             arr[i] = text.substr(last, text.find(";"));
             last = last + arr[i].length()
         }

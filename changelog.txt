@@ -14,3 +14,6 @@ Version 0.02:
 Version 0.03:
 - Filled in 3 methods
 - "Finished" the menu (kinda needs cleaning)
+
+Version 0.04:
+- filled calculate_priority()

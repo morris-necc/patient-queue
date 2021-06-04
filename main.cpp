@@ -46,7 +46,7 @@ int main(){
                                 end = symptoms.find(",", start);
                             } // taken from the load_from_txt method, untested and probably broken somewhere
                             //calculate priority
-                            priority = patients.calculate_priority(); //placeholder, don't forget to change this if you decide to add parameters to the method
+                            priority = patients.calculate_priority(symptoms_list); //placeholder, don't forget to change this if you decide to add parameters to the method
                             //insert into queue
                             patients.insert_patient_record(priority, p_id, name, symptoms_list);
                             break;
