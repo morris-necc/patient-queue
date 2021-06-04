@@ -9,8 +9,9 @@ int main(){
     priorityQueue patients;
 
     while(choice != 5){
+        cout << "\n";
         cout << "===============MAIN MENU===============" << endl;
-        cout << "Current high-priority patient: " << patients.get_front().patient_name << endl;
+        cout << "Patient With Highest Priority : " << patients.get_front().patient_name << endl;
         cout << "1. Update queue" << endl;
         cout << "2. View queue" << endl;
         cout << "3. Save current queue" << endl;
@@ -70,15 +71,16 @@ int main(){
                 patients.write_to_txt();
                 break;
             case 4:
-                cout << "Please enter the .txt filename: ";
+                cout << "Please enter the name of the text file : ";
                 cin >> filename;
                 patients.load_from_txt(filename);
                 break;
             case 5:
+                exit(0)
                 break;
             default:
-                cout << "Please enter a valid choice(0-5)!!!" << endl;
-                break;
+                cout << "Please enter a valid choice(0-5) !" << endl;
+                break; 
         }
     }
 }
