@@ -22,7 +22,8 @@ heart disease, 60
 polio, 40
 lupus, 30
 headaches, 8
-ebola, 70
+ebola, 100
+coronavirus, 75
 cancer, 90
 asthma, 18
 diabetes, 15
