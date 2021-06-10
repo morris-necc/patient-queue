@@ -75,11 +75,11 @@ void priorityQueue::insert_patient_records(const int& priority, const string& id
 }
 
 void priorityQueue::search_patient_records(string& name){
-    //empty
+    // ?????
 }
 
 void priorityQueue::delete_patient_records(string& name){
-    //empty
+    // ?????
 }
 
 MyNode priorityQueue::get_front(){
