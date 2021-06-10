@@ -1,6 +1,3 @@
-#ifndef PRIORITY_QUEUE_
-#define PRIORITY_QUEUE_
-
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
@@ -13,12 +10,12 @@ class priorityQueue {
         MyNode *front;
         MyNode *rear;
     public:
-        priority_queue();
-        ~priority_queue();
+        priorityQueue();
+        ~priorityQueue();
         bool isEmpty() const;
 
         // ???
-        int calculate_priority();
+        int calculate_priority(list<string> symptoms_list);
 
         // insert patient data
         void insert_patient_records(const int& priority, const string& id, const string& name, const list<string>& symptoms);
@@ -28,7 +25,7 @@ class priorityQueue {
         void delete_patient_records(string& name);
 
         // Which patient to be treated right now ?
-        myNode get_front();
+        MyNode get_front();
 
         void print_contents();
 
@@ -38,5 +35,3 @@ class priorityQueue {
         // Loads new data from txt file.
         void load_from_txt(string& filename) const;
 };
-
-#endif

@@ -4,12 +4,12 @@
 #include "priorityQueue.h"
 using namespace std;
 
-priorityQueue::priority_queue(){
+priorityQueue::priorityQueue(){
     front = nullptr;
     rear = nullptr;
 }
 
-priorityQueue::~priority_queue(){
+priorityQueue::~priorityQueue(){
     MyNode* ptr, temp;
     ptr = front;
     while(ptr != nullptr){
@@ -29,7 +29,7 @@ int priorityQueue::calculate_priority(list<string> symptoms_list){
     string text;
     while(getline(symptomsDatabase, text)){
         int last = 0;
-        string[] arr = new string[2];
+        string arr[2];
         for(int i = 0; i < 2; i++){
             arr[i] = text.substr(last, text.find(","));
             last = last + arr[i].length();
@@ -59,7 +59,7 @@ void priorityQueue::delete_patient_records(string& name){
     //empty
 }
 
-myNode priorityQueue::get_front(){
+MyNode priorityQueue::get_front(){
     //untested
     if(front == nullptr){
         cout << "QUEUE IS EMPTY" << endl;
@@ -107,19 +107,19 @@ void priorityQueue::write_to_txt() const{
         cout << "The queue is still empty" << endl;
     } else {
         while(ptr != rear){
-            File << ptr -> patient_id << ";" ptr -> patient_priority << ";" << ptr -> patient_name;
+            File << ptr -> patient_id << ";" << ptr -> patient_priority << ";" << ptr -> patient_name;
             for (string symptom: ptr->patient_symptoms){
                 File << symptom << ",";
             }
             File << endl;
         }
-        File << ptr -> patient_id << ";" ptr -> patient_priority << ";" << ptr -> patient_name;
+        File << ptr -> patient_id << ";" << ptr -> patient_priority << ";" << ptr -> patient_name;
         for (string symptom: ptr->patient_symptoms){
             File << symptom << ",";
         }
         File << endl;
     }
-    File.close()
+    File.close();
 
 }
 
@@ -135,7 +135,7 @@ void priorityQueue::load_from_txt(string& filename) const{
     } //i think you can use this for the destructor method as well
 
     string text, text_symptoms;
-    string[] arr = new string[4]
+    string arr[4];
     ifstream ReadFile(filename);
     ptr = new MyNode;
     front = ptr;
@@ -145,7 +145,7 @@ void priorityQueue::load_from_txt(string& filename) const{
         int last = 0;
         for(int i = 0; i<4; i++){
             arr[i] = text.substr(last, text.find(";"));
-            last = last + arr[i].length()
+            last = last + arr[i].length();
         }
         ptr -> patient_id = arr[0];
         ptr -> patient_priority = arr[1];
@@ -167,5 +167,5 @@ void priorityQueue::load_from_txt(string& filename) const{
     rear = temp;
     rear -> link = nullptr;
     delete ptr; //because the 2nd last line of the while loop
-    ReadFile.close()
+    ReadFile.close();
 }

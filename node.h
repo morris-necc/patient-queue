@@ -1,12 +1,9 @@
-#ifndef _THE_NODE
-#define _THE_NODE
-
 #include <iostream>
 #include <list>
 #include <string>
 using namespace std;
 
-typedef struct node {
+struct MyNode {
     public:
         /*
         Each Patient's Attributes :
@@ -23,7 +20,5 @@ typedef struct node {
         /*
         Connection Between Nodes
         */
-        node *link;
-}MyNode;
-
-#endif
+        MyNode *link;
+};
