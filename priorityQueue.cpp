@@ -48,7 +48,30 @@ int priorityQueue::calculate_priority(list<string> symptoms_list){
 }
 
 void priorityQueue::insert_patient_records(const int& priority, const string& id, const string& name, const list<string>& symptoms){
-    //empty
+    MyNode *temp, *q;
+
+    // Creates New Node.
+    temp = new MyNode;
+    temp->patient_priority = priority;
+    temp->patient_id = id;
+    temp->patient_name = name;
+    temp->patient_symptoms = symptoms;
+
+    // Insert At Frontmost Position.
+    if((front == nullptr) || (priority < front->patient_priority)){
+        temp->link = front;
+        front = temp;
+    }
+    else{
+        q = front;
+
+        // Linear Traversal To Compare To Each Node's Priority + Finding Position.
+        while((q->link != nullptr) || (q->link->patient_priority <= priority))
+            q = q->link;
+
+        temp->link = q->link;
+        q->link = temp;
+    }
 }
 
 void priorityQueue::search_patient_records(string& name){
