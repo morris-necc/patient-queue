@@ -20,5 +20,5 @@ struct MyNode {
         /*
         Connection Between Nodes
         */
-        MyNode *link;
+        MyNode* link;
 };

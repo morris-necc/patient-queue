@@ -19,21 +19,19 @@ class priorityQueue {
 
         // insert patient data
         // this helper method creates new node based on given parameters, for insertion process.
-        MyNode *makeNewNode(int priority, string id, string name, list<string> symptoms);
         void insert_patient_records(const int& priority, const string& id, const string& name, const list<string>& symptoms);
 
         // Search and delete by referring to patient's name.
-        void search_patient_records(string& name);
         void delete_patient_records(string& name);
 
         // Which patient to be treated right now ?
-        MyNode get_front();
+        MyNode* get_front();
 
         void print_contents();
 
         // Creates new .txt file for every time method is called.
-        void write_to_txt() const;
+        void write_to_txt();
 
         // Loads new data from txt file.
-        void load_from_txt(string& filename) const;
+        void load_from_txt(string& filename);
 };

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <map>
+#include <string>
 #include "priorityQueue.h"
 using namespace std;
 
@@ -10,7 +11,8 @@ priorityQueue::priorityQueue(){
 }
 
 priorityQueue::~priorityQueue(){
-    MyNode* ptr, temp;
+    MyNode* ptr;
+    MyNode* temp;
     ptr = front;
     while(ptr != nullptr){
         temp = ptr->link; //eventually temp = rear->link = nullptr
@@ -32,23 +34,24 @@ int priorityQueue::calculate_priority(list<string> symptoms_list){
         string arr[2];
         for(int i = 0; i < 2; i++){
             arr[i] = text.substr(last, text.find(","));
+            last++;
             last = last + arr[i].length();
         }
         symptomsPriority.insert(pair<string, int>(arr[0], stoi(arr[1]))); //stoi converts string to int
     }
 
     //calculate sum of priority based on the map
-    for(auto const& it : symptoms_list){
-        string symptom = *it;
+    for(auto it : symptoms_list){
+        string symptom = it;
         auto x = symptomsPriority.find(symptom); //x = iterator for the element
         priority = priority + x->second; //don't know if this works
     }
-
     return priority;
 }
 
 void priorityQueue::insert_patient_records(const int& priority, const string& id, const string& name, const list<string>& symptoms){
-    MyNode *temp, *q;
+    MyNode *temp;
+    MyNode *q;
 
     // Creates New Node.
     temp = new MyNode;
@@ -58,31 +61,45 @@ void priorityQueue::insert_patient_records(const int& priority, const string& id
     temp->patient_symptoms = symptoms;
 
     // Insert At Frontmost Position.
-    if((front == nullptr) || (priority < front->patient_priority)){
+    if((front == nullptr) || (priority > front->patient_priority)){
         temp->link = front;
         front = temp;
     }
     else{
         q = front;
-
         // Linear Traversal To Compare To Each Node's Priority + Finding Position.
-        while((q->link != nullptr) || (q->link->patient_priority <= priority))
+        while(q->link != nullptr){ //nullptr has no patient_priority
+            if(priority > q -> link -> patient_priority){
+                break;
+            }
             q = q->link;
-
+        }
         temp->link = q->link;
         q->link = temp;
     }
 }
 
-void priorityQueue::search_patient_records(string& name){
-    // ?????
-}
-
 void priorityQueue::delete_patient_records(string& name){
-    // ?????
+    MyNode* ptr;
+    MyNode* prev;
+    ptr = front;
+    prev = front;
+    if(front == nullptr){
+        cout << "QUEUE IS EMPTY" << endl;
+    } else {
+        while(ptr -> link != nullptr){
+            ptr = ptr -> link;
+            if(ptr -> patient_name == name){
+                prev -> link = ptr -> link;
+                delete ptr;
+                break;
+            }
+            prev = prev -> link;
+        }
+    }
 }
 
-MyNode priorityQueue::get_front(){
+MyNode* priorityQueue::get_front(){
     //untested
     if(front == nullptr){
         cout << "QUEUE IS EMPTY" << endl;
@@ -98,7 +115,7 @@ void priorityQueue::print_contents(){
     if(ptr == nullptr){
         cout << "The queue is empty" << endl;
     } else {
-        while(ptr!=rear){
+        while(ptr){
             cout << ptr -> patient_id << "\t";
             cout << ptr -> patient_priority << "\t";
             cout << ptr -> patient_name << "\t";
@@ -108,48 +125,38 @@ void priorityQueue::print_contents(){
             cout << endl;
             ptr = ptr->link;
         }
-        // ptr = rear because rear->link is nullptr
-        cout << ptr -> patient_id << "\t"; 
-        cout << ptr -> patient_priority << "\t";
-        cout << ptr -> patient_name << "\t";
-        for(string symptom: ptr->patient_symptoms){
-            cout << symptom << ",";
-        }
         cout << endl;
     }
 }
 
-void priorityQueue::write_to_txt() const{
+void priorityQueue::write_to_txt(){
     //untested
     //same logic as above, but writing to file instead
     //every attribute of the node is separated by ';' without quotation marks
-    ofstream File("test.txt"); //feel free to change the name later on
+    ofstream File("patients.txt"); //feel free to change the name later on
     MyNode* ptr;
     ptr = front;
     if(ptr == nullptr){
         cout << "The queue is still empty" << endl;
     } else {
-        while(ptr != rear){
-            File << ptr -> patient_id << ";" << ptr -> patient_priority << ";" << ptr -> patient_name;
+        while(ptr){
+            File << ptr -> patient_id << ";" << ptr -> patient_priority << ";" << ptr -> patient_name << ";";
             for (string symptom: ptr->patient_symptoms){
                 File << symptom << ",";
             }
             File << endl;
+            ptr = ptr -> link;
         }
-        File << ptr -> patient_id << ";" << ptr -> patient_priority << ";" << ptr -> patient_name;
-        for (string symptom: ptr->patient_symptoms){
-            File << symptom << ",";
-        }
-        File << endl;
     }
     File.close();
 
 }
 
-void priorityQueue::load_from_txt(string& filename) const{
+void priorityQueue::load_from_txt(string& filename){
     //untested, most likely broken somewhere
     //clean the queue
-    MyNode* ptr, temp;
+    MyNode* ptr;
+    MyNode* temp;
     ptr = front;
     while(ptr != nullptr){
         temp = ptr->link; //eventually temp = rear->link = nullptr
@@ -158,6 +165,7 @@ void priorityQueue::load_from_txt(string& filename) const{
     } //i think you can use this for the destructor method as well
 
     string text, text_symptoms;
+    string temp_string = "";
     string arr[4];
     ifstream ReadFile(filename);
     ptr = new MyNode;
@@ -165,13 +173,26 @@ void priorityQueue::load_from_txt(string& filename) const{
     while(getline(ReadFile, text)){
         temp = ptr;
         //substrings into array
-        int last = 0;
-        for(int i = 0; i<4; i++){
-            arr[i] = text.substr(last, text.find(";"));
-            last = last + arr[i].length();
+        // int last = 0;
+        // for(int i = 0; i<4; i++){
+        //     arr[i] = text.substr(last, text.find(";"));
+        //     last++;
+        //     last = last + arr[i].length();
+        // }
+        int i = 0, last = 0;
+        for(auto x: text){
+            if(x == ';'){
+                arr[i] = temp_string;
+                temp_string = "";
+                i++;
+            } else {
+                temp_string = temp_string + x;
+            }
         }
+        arr[i] = temp_string;
+        temp_string = "";
         ptr -> patient_id = arr[0];
-        ptr -> patient_priority = arr[1];
+        ptr -> patient_priority = stoi(arr[1]);
         ptr -> patient_name = arr[2];
         text_symptoms = arr[3];
         //now split text_symptoms into elements inside a list
@@ -183,7 +204,7 @@ void priorityQueue::load_from_txt(string& filename) const{
             start = last + 1;
             last = text_symptoms.find(",", start);
         }
-        ptr ->patient_symptoms = list_symptoms;
+        ptr -> patient_symptoms = list_symptoms;
         ptr = new MyNode;
         temp->link = ptr; //temp is used to link current node with new node
     }
