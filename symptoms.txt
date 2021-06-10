@@ -8,4 +8,24 @@ stroke, 70
 unresponsive, 60
 vomiting, 10
 pregnant, 50
-
+malaria, 80
+tuberculosis, 50
+chickenpox, 10
+flu, 10
+herpes, 9
+skin infections, 10
+urinary tract infection, 25
+allergies, 12
+diarrhea, 9
+food poisoning, 12
+heart disease, 60
+polio, 40
+lupus, 30
+headaches, 8
+ebola, 100
+coronavirus, 75
+cancer, 90
+asthma, 18
+diabetes, 15
+diphtheria, 30
+rabies, 100

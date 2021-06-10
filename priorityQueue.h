@@ -18,6 +18,8 @@ class priorityQueue {
         int calculate_priority(list<string> symptoms_list);
 
         // insert patient data
+        // this helper method creates new node based on given parameters, for insertion process.
+        MyNode *makeNewNode(int priority, string id, string name, list<string> symptoms);
         void insert_patient_records(const int& priority, const string& id, const string& name, const list<string>& symptoms);
 
         // Search and delete by referring to patient's name.
