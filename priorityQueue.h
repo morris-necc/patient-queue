@@ -7,6 +7,7 @@ using namespace std;
 
 class priorityQueue {
     private:
+        // Singly Linked.
         MyNode *front;
         MyNode *rear;
     public:
