@@ -1,17 +1,18 @@
 #include <iostream>
+#include <string>
 #include "priorityQueue.cpp"
 using namespace std;
 
-int main(){
+int main(void){
     int choice = 0, choice2 = 0, start = 0, end = 0, priority;
     string name, filename, symptoms, p_id;
     list<string> symptoms_list;
     priorityQueue patients;
 
     while(choice != 5){
-        cout << "\n";
+        cout << endl;
         cout << "===============MAIN MENU===============" << endl;
-        cout << "Patient With Highest Priority : " << patients.get_front() -> patient_name << endl;
+        cout << "Patient With Highest Priority : " << (string)patients.get_front() -> patient_name << endl;
         cout << "1. Update queue" << endl;
         cout << "2. View queue" << endl;
         cout << "3. Save current queue" << endl;
@@ -40,7 +41,7 @@ int main(){
                             cin >> symptoms;
                             symptoms = symptoms + ","; //fixes problem by going around it
                             symptoms_list.clear(); // clears list
-                            //split symptoms into values in symptoms_list
+                            //split symptoms and values in symptoms_list
                             start = 0;
                             end = symptoms.find(",");
                             while(end != -1){
@@ -78,10 +79,13 @@ int main(){
                 patients.load_from_txt(filename);
                 break;
             case 5:
+                exit(0);
                 break;
             default:
                 cout << "Please enter a valid choice(0-5) !" << endl;
                 break; 
         }
     }
+
+    return 0;
 }
