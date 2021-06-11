@@ -30,7 +30,7 @@ class priorityQueue {
 
         void print_contents();
 
-        // Creates new .txt file for every time method is called.
+        // Writes records to .txt file for every time method is called.
         void write_to_txt();
 
         // Loads new data from txt file.
