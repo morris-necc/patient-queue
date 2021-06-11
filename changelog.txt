@@ -17,3 +17,8 @@ Version 0.03:
 
 Version 0.04:
 - filled calculate_priority()
+
+Version 0.05:
+- fixed delete_patient_records()
+- fixed get_front() warning(omitted succesfully)
+- finished.
