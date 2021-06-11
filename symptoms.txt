@@ -2,30 +2,54 @@ cold,5
 fever,7
 coughing,6
 nausea,8
-internal bleeding,20
+internal_bleeding,20
 seizure,60
 stroke,70
+stabbed,75
 unresponsive,60
+cardiac_arrest,150
 vomiting,10
 pregnant,50
-malaria,80
+resuscitation_needed,200
+malaria,25
 tuberculosis,50
+gunshot_wound,80
 chickenpox,10
 flu,10
+skin_lesions,15
 herpes,9
-skin infections,10
-urinary tract infection,25
+skin_infections,10
+urinary_tract_infection,25
 allergies,12
 diarrhea,9
-food poisoning,12
-heart disease,60
+food_poisoning,12
+heart_disease,95
 polio,40
 lupus,30
 headaches,8
+aids,75
 ebola,100
-coronavirus,75
+coronavirus,85
 cancer,90
 asthma,18
 diabetes,15
 diphtheria,30
 rabies,100
+eye_checkup,5
+chemoteraphy_schedule,50
+collapsed_lung,175
+influenza,25
+pneumonia,45
+enchephalitis,85
+asthma,35
+gonorrhea,20
+e_coli,20
+hepatitis,50
+lead_poisoning,190
+meningitis,125
+rotavirus,90
+rubella,85
+tetanus,55
+staph_infection,50
+syphillis,15
+zika_virus,40
