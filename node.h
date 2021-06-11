@@ -1,3 +1,6 @@
+#ifndef NODE_
+#define NODE_
+
 #include <iostream>
 #include <list>
 #include <string>
@@ -22,3 +25,5 @@ struct MyNode {
         */
         MyNode* link;
 };
+
+#endif
