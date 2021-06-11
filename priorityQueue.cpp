@@ -4,13 +4,14 @@
 #include <string>
 #include "priorityQueue.h"
 using namespace std;
-
+ 
 priorityQueue::priorityQueue(){
     front = nullptr;
     rear = nullptr;
 }
 
 priorityQueue::~priorityQueue(){
+    // ptr is traverse pointer to node
     MyNode* ptr;
     MyNode* temp;
     ptr = front;
@@ -18,7 +19,7 @@ priorityQueue::~priorityQueue(){
         temp = ptr->link; //eventually temp = rear->link = nullptr
         delete ptr;
         ptr = temp; //which ends the loop because ptr = nullptr
-    } //i think you can use this for the destructor method as well
+    } //i think this will be the process that explains how the destructor method works.
 }
 
 int priorityQueue::calculate_priority(list<string> symptoms_list){
@@ -33,10 +34,12 @@ int priorityQueue::calculate_priority(list<string> symptoms_list){
         int last = 0;
         string arr[2];
         for(int i = 0; i < 2; i++){
+            // Separate symptom and priority_val.
             arr[i] = text.substr(last, text.find(","));
             last++;
             last = last + arr[i].length();
         }
+        // Cast priority_val to integer dtype using the method stoi(*args).
         symptomsPriority.insert(pair<string, int>(arr[0], stoi(arr[1]))); //stoi converts string to int
     }
 
@@ -51,6 +54,8 @@ int priorityQueue::calculate_priority(list<string> symptoms_list){
 
 void priorityQueue::insert_patient_records(const int& priority, const string& id, const string& name, const list<string>& symptoms){
     MyNode *temp;
+
+    // Pointer Node.
     MyNode *q;
 
     // Creates New Node.
@@ -87,6 +92,7 @@ void priorityQueue::delete_patient_records(string& name){
     if(front == nullptr){
         cout << "QUEUE IS EMPTY" << endl;
     } else {
+        // Linear search.
         while(ptr -> link != nullptr){
             ptr = ptr -> link;
             if(ptr -> patient_name == name){
@@ -152,6 +158,7 @@ void priorityQueue::write_to_txt(){
 
 }
 
+// Debug
 void priorityQueue::load_from_txt(string& filename){
     //untested, most likely broken somewhere
     //clean the queue
