@@ -1,2 +1,2 @@
-# patient-queue
-Tired of making hard decisions between 2 dying patients? Look no further!
+# Patient Queuing System
+Tired of making hard decisions between 2 dying patients ? Look no further !
