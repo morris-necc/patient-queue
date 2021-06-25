@@ -1,1 +1,0 @@
-// Testing The load_from_queue() method.
